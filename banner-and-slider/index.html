@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>点击图片更换</title>
+	<style type="text/css">
+		.picPlay img{
+			width: 100%;
+		}
+		.underSlider{
+			margin: 0 auto;
+		}
+		.picViewBorder{
+			overflow: hidden;
+			float: left;
+			/*position: absolute;*/
+		}
+		.picView{
+			position: relative;
+			transition: all .5s ease;
+			-moz-transition:all .5s ease;
+			-webkit-transition:all .5s ease;
+			-o-transition:all .5s ease;
+		}
+		.picView img{
+			height: 59px;
+			border: 1px solid white;
+			float: left;
+		}
+		.picView img:hover{
+			border: 1px solid black;
+		}
+		button{
+			float: left;
+			padding: 0;
+		}
+		button.right{
+			position: absolute;
+			right: 8px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div class="picPlay">
+			<img src="../../images/banner/1.jpg">
+		</div>
+		<div class="underSlider">
+			<button class="left">prev</button>
+			<div class="picViewBorder">
+				<div class="picView" style="left:0;">
+					<img src="../../images/banner/1.jpg">
+					<img src="../../images/banner/2.jpg">
+					<img src="../../images/banner/3.jpg">
+					<img src="../../images/banner/4.jpg">
+					<img src="../../images/banner/5.jpg">
+					<img src="../../images/banner/6.jpg">
+					<img src="../../images/banner/7.jpg">
+				</div>
+			</div>
+			<button class="right">next</button>
+		</div>
+	</div>
+	<EMBED src="../../music/1.mp3" autostart="true" loop="true" hidden="false" controls=stopbutton palette='black|red' />
+</body>
+<script type="text/javascript" src='http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js'></script>
+<script type="text/javascript">
+	var bodyWidth = $('.picPlay img')[0].width;
+	window.onresize = function(){
+		bodyWidth = $('.picPlay img')[0].width;
+		console.log(bodyWidth);
+	// };
+	// $(document).ready(function(){
+		var picViewImg = $('.picView img');
+		var btnHeight = picViewImg[0].height;
+		var picWidth = picViewImg[0].width+2;
+		var picNum = $('.picView')[0].children.length;
+		var picViewBorder = $('.picViewBorder');
+
+		// var bodyWidth = $('.picPlay img')[0].width;
+		$('.picView').css('width',picNum * picWidth+41);
+		$('button').css('height',btnHeight);
+		picViewImg.click(function(e){
+			var picViewAddr = e.target.src;
+			$('.picPlay img')[0].src = picViewAddr;
+		});
+		underSliderWidth = Math.floor((bodyWidth - 58)/picWidth)*picWidth;
+		var leftbtn = $('button.left');
+		var rightbtn = $('button.right');
+		var picView = $('.picView');
+		leftbtn.click(function() {
+			/* Act on the event */
+			picView.css('left',parseInt(picView[0].style.left)-picWidth);
+			if(parseInt(picView[0].style.left)<underSliderWidth - picNum*picWidth){
+				picView.css('left',underSliderWidth - picNum*picWidth);
+			}
+		});
+		rightbtn.click(function() {
+			/* Act on the event */
+			picView.css('left',parseInt(picView[0].style.left)+picWidth);
+			if(parseInt(picView[0].style.left)>0){
+				picView.css('left',0);
+			}
+		});
+		picViewBorder.css({
+			'marginLeft':(bodyWidth - 58-underSliderWidth)/2,
+			'width':underSliderWidth
+		});
+	// });
+	}
+</script>
+</html>
