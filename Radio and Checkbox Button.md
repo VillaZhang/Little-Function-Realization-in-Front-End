@@ -1,4 +1,4 @@
-# radio-button
+# Radio-Button
 ## Here is the code:
 ````
 <html>
@@ -25,7 +25,7 @@
 ![Image](https://raw.githubusercontent.com/VillaZhang/img-folder/master/radio-button.jpg)
 
 
-# checkbox-button
+# Checkbox-Button
 ## Here is the code:
 ````
 <html>
