@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>进度条</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.progress{
+			width: 900px;
+			height: 16px;
+			background-color: #ccc;
+			position: relative;
+		}
+		.progress .ibar{
+			width: 0;
+			height: 16px;
+			background-color: #9370db;
+			position: absolute;
+		}
+		.progress .num{
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="progress">
+			<div class="ibar" id="ibar"></div>
+			<div class="num" id="num">0%</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// alert('fff');
+        $("#ibar").animate(
+            {"width":"900px"},
+            {
+                duration:3000,
+                easing:"linear",
+                step: function(now, fx){
+                    $("#num").css({"left":now+"px"}).html(parseInt(now/9) + "%");
+                }
+            }
+        )
+	setTimeout("alert('3 seconds!')",3009);
+    });
+</script>
+
+</html>
