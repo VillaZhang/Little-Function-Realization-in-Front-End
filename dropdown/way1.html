@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>dropdown</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			font-size: 13px;
+			padding: 0;
+			margin: 0px;
+		}
+		#select{
+			border: 1px solid black;
+		}
+		#select,p{
+			width: 100px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+		}
+		p{
+			width: 83px;
+		}
+		#dropdown2{
+			display: none;
+			width: 100px;
+			position: absolute;
+			max-height: 105px;
+			overflow-y: scroll;
+			border:1px solid black;
+			border-top:none;
+		}
+		#dropdown2 p:hover{
+			background-color: blue;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<!-- html5 select标签 -->
+	<select>
+    <option>选择品牌</option>
+	<option>选择品牌1</option>
+	<option>选择品牌2</option>
+    </select>
+
+
+
+
+	<!-- jQuery -->
+	<p id="select">选择品牌</p>
+	<div id="dropdown2">
+		<p id="1">Apple</p>
+		<p id="2">Hua Wei</p>
+		<p id="3">Sony</p>
+		<p id="4">Apple</p>
+		<p id="5">Hua Wei</p>
+		<p id="6">Sony</p>
+	</div>
+	<span>www</span>
+</body>
+<script type="text/javascript" src='http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var select = $('#select');
+	var dropdown2 = $('#dropdown2');
+	var p = $('#dropdown2 p');
+	select.click (function(){
+		dropdown2.toggle();
+		p.css('border-top','1px solid black');
+	});
+	dropdown2.click(function(e) {
+		select[0].textContent = e.target.textContent;
+		dropdown2.css('display','none');
+	});
+	$('html').click(function(e){
+		if (e.target.id!=select[0].id&&e.target.id!=dropdown2[0].id){
+			dropdown2.hide();
+		}
+	});
+})
+
+</script>
+</html>
